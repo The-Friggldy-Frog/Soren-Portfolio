@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Diane or Judy Personality Quiz</title>
+
+  <style>
+    body {
+      background-color: coral;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      color: #4a1f1f;
+      margin: 0;
+      padding: 0;
+    }
+
+    .quiz-container {
+      max-width: 800px;
+      margin: 40px auto;
+      background-color: #ffd1d1;
+      padding: 30px;
+      border-radius: 20px;
+      border: 3px solid white;
+      box-shadow: 0 4px 12px rgba(74, 31, 31, 0.3);
+    }
+
+    h1 {
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .question {
+      margin: 25px 0;
+      padding: 15px;
+      background-color: #fff5f5;
+      border-radius: 15px;
+    }
+
+    .question h3 {
+      margin-bottom: 12px;
+    }
+
+    label {
+      display: block;
+      margin: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-right: 8px;
+    }
+
+    button,
+    .home-button {
+      display: inline-block;
+      background-color: #ffffff;
+      color: coral;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      padding: 12px 24px;
+      margin: 20px;
+      border-radius: 25px;
+      border: 2px solid #4a1f1f;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover,
+    .home-button:hover {
+      background-color: #4a1f1f;
+      color: #ffffff;
+      transform: scale(1.05);
+    }
+
+    #result {
+      display: none;
+      margin-top: 30px;
+      padding: 25px;
+      background-color: white;
+      border-radius: 18px;
+      border: 3px solid #4a1f1f;
+    }
+
+    #result h2 {
+      color: coral;
+      font-size: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="quiz-container">
+    <h1>Diane or Judy Personality Quiz</h1>
+
+    <p>
+      Answer these 10 questions to find out whether you are more of a
+      Diane Foxington kind of person or a Judy Hopps kind of person.
+    </p>
+
+    <form id="quizForm">
+
+      <div class="question">
+        <h3>1. How do you usually enter a room?</h3>
+        <label><input type="radio" name="q1" value="diane"> Calm, confident, and composed</label>
+        <label><input type="radio" name="q1" value="judy"> Energetic, friendly, and excited</label>
+      </div>
+
+      <div class="question">
+        <h3>2. What motivates you more?</h3>
+        <label><input type="radio" name="q2" value="diane"> Strategy, ambition, and control</label>
+        <label><input type="radio" name="q2" value="judy"> Hope, fairness, and proving yourself</label>
+      </div>
+
+      <div class="question">
+        <h3>3. Pick your ideal outfit style.</h3>
+        <label><input type="radio" name="q3" value="diane"> Elegant, polished, and stylish</label>
+        <label><input type="radio" name="q3" value="judy"> Practical, cute, and comfortable</label>
+      </div>
+
+      <div class="question">
+        <h3>4. How do people usually describe you?</h3>
+        <label><input type="radio" name="q4" value="diane"> Mysterious and confident</label>
+        <label><input type="radio" name="q4" value="judy"> Kind and determined</label>
+      </div>
+
+      <div class="question">
+        <h3>5. What is your biggest strength?</h3>
+        <label><input type="radio" name="q5" value="diane"> Reading people and staying one step ahead</label>
+        <label><input type="radio" name="q5" value="judy"> Working hard and never giving up</label>
+      </div>
+
+      <div class="question">
+        <h3>6. What kind of hero are you?</h3>
+        <label><input type="radio" name="q6" value="diane"> The cool mastermind with a hidden soft side</label>
+        <label><input type="radio" name="q6" value="judy"> The brave underdog with a big heart</label>
+      </div>
+
+      <div class="question">
+        <h3>7. What do you value most?</h3>
+        <label><input type="radio" name="q7" value="diane"> Independence</label>
+        <label><input type="radio" name="q7" value="judy"> Justice</label>
+      </div>
+
+      <div class="question">
+        <h3>8. How do you handle pressure?</h3>
+        <label><input type="radio" name="q8" value="diane"> Stay smooth, calm, and calculated</label>
+        <label><input type="radio" name="q8" value="judy"> Push through with determination</label>
+      </div>
+
+      <div class="question">
+        <h3>9. What is your social style?</h3>
+        <label><input type="radio" name="q9" value="diane"> Charismatic, selective, and a little guarded</label>
+        <label><input type="radio" name="q9" value="judy"> Open, friendly, and enthusiastic</label>
+      </div>
+
+      <div class="question">
+        <h3>10. What kind of story fits you best?</h3>
+        <label><input type="radio" name="q10" value="diane"> A stylish redemption arc</label>
+        <label><input type="radio" name="q10" value="judy"> An inspiring underdog journey</label>
+      </div>
+
+      <button type="button" onclick="calculateResult()">Get My Result</button>
+
+    </form>
+
+    <div id="result">
+      <h2 id="resultTitle"></h2>
+      <p id="resultText"></p>
+    </div>
+
+    <a href="index.html" class="home-button">Back to Main Page</a>
+  </div>
+
+  <script>
+    function calculateResult() {
+      let dianeScore = 0;
+      let judyScore = 0;
+
+      for (let i = 1; i <= 10; i++) {
+        let answer = document.querySelector('input[name="q' + i + '"]:checked');
+
+        if (!answer) {
+          alert("Please answer all 10 questions before getting your result.");
+          return;
+        }
+
+        if (answer.value === "diane") {
+          dianeScore++;
+        } else if (answer.value === "judy") {
+          judyScore++;
+        }
+      }
+
+      let resultTitle = document.getElementById("resultTitle");
+      let resultText = document.getElementById("resultText");
+      let resultBox = document.getElementById("result");
+
+      if (dianeScore > judyScore) {
+        resultTitle.textContent = "You are a Diane Foxington kind of person.";
+        resultText.textContent =
+          "You are confident, stylish, strategic, and a little mysterious. You know how to stay calm under pressure and make a strong impression without trying too hard.";
+      } else if (judyScore > dianeScore) {
+        resultTitle.textContent = "You are a Judy Hopps kind of person.";
+        resultText.textContent =
+          "You are optimistic, hardworking, kind, and determined. You believe in doing the right thing and proving people wrong through effort and heart.";
+      } else {
+        resultTitle.textContent = "You are a mix of Diane and Judy.";
+        resultText.textContent =
+          "You have Diane’s confidence and mystery mixed with Judy’s optimism and determination. Basically, you are stylish, sincere, and hard to underestimate.";
+      }
+
+      resultBox.style.display = "block";
+      resultBox.scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+
+</body>
+</html>
